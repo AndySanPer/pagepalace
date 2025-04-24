@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informacióndelector" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0cc9f321-5be6-429e-b82e-b737ded50ac8">
+	<property name="template.type" value="columnar"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     lectores.`ID_Lector` AS lectores_ID_Lector,
+     lectores.`Nombre` AS lectores_Nombre,
+     lectores.`ApelliPate` AS lectores_ApelliPate,
+     lectores.`ApelliMate` AS lectores_ApelliMate,
+     lectores.`fecnac` AS lectores_fecnac,
+     lectores.`Edad` AS lectores_Edad,
+     lectores.`Direccion` AS lectores_Direccion,
+     lectores.`codpos` AS lectores_codpos,
+     lectores.`telefono` AS lectores_telefono,
+     lectores.`Correo` AS lectores_Correo
+FROM
+     `lectores` lectores]]>
+	</queryString>
+	<field name="lectores_Nombre" class="java.lang.String"/>
+	<field name="lectores_ApelliPate" class="java.lang.String"/>
+	<field name="lectores_ApelliMate" class="java.lang.String"/>
+	<field name="lectores_Direccion" class="java.lang.String"/>
+	<field name="lectores_telefono" class="java.lang.String"/>
+	<field name="lectores_Correo" class="java.lang.String"/>
+	<group name="lectores_Direccion">
+		<groupExpression><![CDATA[$F{lectores_Direccion}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<frame>
+					<reportElement mode="Opaque" x="0" y="7" width="555" height="24" forecolor="#B89F7D" backcolor="#AD9AD5" uuid="fc80af84-8247-4f42-9f7e-19be3dcc6d23"/>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement style="SubTitle" isPrintRepeatedValues="false" x="2" y="1" width="479" height="23" forecolor="#FFFFFF" uuid="48d5a1f1-cec7-4c76-88de-0d0cae46dcf5"/>
+						<textElement>
+							<font isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{lectores_Direccion}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="120" y="10" width="435" height="93" uuid="ee18966b-1358-4c88-8179-6f3200a806b4"/>
+				<textElement>
+					<font size="80" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PagePalace]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="336" y="103" width="217" height="29" uuid="8e0c8eb3-40c6-48d1-833a-4272258f3be6"/>
+				<textElement>
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Información de contacto]]></text>
+			</staticText>
+			<image>
+				<reportElement x="2" y="0" width="118" height="132" uuid="fa9070de-4a86-4ffd-80ef-6edaa8d43776"/>
+				<imageExpression><![CDATA["C:\\Users\\never\\OneDrive\\Escritorio\\contacto.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="117" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="114" y="7" width="132" height="20" forecolor="#000000" uuid="c0b34c8a-0695-4b6e-8f05-19735c14d3a2"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="305" y="7" width="338" height="18" uuid="eb88e2f2-820a-4409-8c31-098f57d257b2"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lectores_Nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="114" y="27" width="132" height="20" forecolor="#000000" uuid="b4389dc7-17a4-4691-b2ea-44a1fd4b5111"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Apellido Paterno]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="305" y="27" width="338" height="18" uuid="ab87c186-2fff-4118-8b53-e87243cd98cf"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lectores_ApelliPate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="114" y="47" width="132" height="20" forecolor="#000000" uuid="67174904-ec59-45f5-a486-61f4aa2b0337"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Apellido Materno]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="305" y="47" width="338" height="18" uuid="17811cc1-0a44-4afa-8fab-d49d8f7f2c67"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lectores_ApelliMate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="114" y="67" width="132" height="20" forecolor="#000000" uuid="2e78e436-f00b-46a2-a970-00127b8985ee"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Telefono]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="305" y="67" width="338" height="18" forecolor="#253564" uuid="ee4f2688-9f3d-4dc7-aa03-3a7a50cacac1"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lectores_telefono}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="114" y="87" width="132" height="20" forecolor="#000000" uuid="ea3db1c6-c412-41a6-9550-14d84d780bb7"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Correo Electronico]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="305" y="87" width="338" height="18" forecolor="#253564" uuid="6da72600-ae27-4140-9f83-29815cbe0813"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lectores_Correo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="107" width="553" height="3" uuid="f27cd871-a2fa-4474-9ff8-754d9f8d7498"/>
+			</line>
+			<image>
+				<reportElement x="2" y="9" width="79" height="98" uuid="4ca0bb7f-a174-4493-ba63-89df7c8d207d"/>
+				<imageExpression><![CDATA["C:\\Users\\never\\OneDrive\\Escritorio\\contacto2.png"]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="db54cb3c-b592-496e-be06-91bc336d5133"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

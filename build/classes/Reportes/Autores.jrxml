@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Autores" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="364d04e8-f477-440e-aa28-4db2d6bdc752">
+	<property name="template.type" value="columnar"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     autores.`ID_Autor` AS autores_ID_Autor,
+     autores.`Nombre` AS autores_Nombre,
+     autores.`Apellido` AS autores_Apellido,
+     autores.`FechaNaci` AS autores_FechaNaci,
+     autores.`Nacionalidad` AS autores_Nacionalidad
+FROM
+     `autores` autores]]>
+	</queryString>
+	<field name="autores_ID_Autor" class="java.lang.Integer"/>
+	<field name="autores_Nombre" class="java.lang.String"/>
+	<field name="autores_Apellido" class="java.lang.String"/>
+	<field name="autores_FechaNaci" class="java.sql.Date"/>
+	<field name="autores_Nacionalidad" class="java.lang.String"/>
+	<group name="autores_Nombre">
+		<groupExpression><![CDATA[$F{autores_Nombre}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<frame>
+					<reportElement mode="Opaque" x="0" y="7" width="555" height="24" forecolor="#B89F7D" backcolor="#FF9966" uuid="23e6c1b0-0359-4a1a-bb18-6942848b573f"/>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement style="SubTitle" isPrintRepeatedValues="false" x="2" y="1" width="479" height="23" forecolor="#FFFFFF" uuid="b8013f70-da2f-423e-956f-e03c00125b88"/>
+						<textElement>
+							<font isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{autores_Nombre}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="120" y="10" width="435" height="93" uuid="c3f21dc6-81f3-424c-a5ea-5d438a9d0a1e"/>
+				<textElement>
+					<font size="80" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PagePalace]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="338" y="103" width="217" height="29" uuid="f60d476d-5a89-4af0-917a-674281888d97"/>
+				<textElement>
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Autores]]></text>
+			</staticText>
+			<image>
+				<reportElement x="2" y="0" width="118" height="132" uuid="0db4ed10-a809-4dd9-9ffd-7b58b897dc1b"/>
+				<imageExpression><![CDATA["C:\\Users\\never\\OneDrive\\Escritorio\\autores2.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="91" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="2" y="90" width="551" height="1" uuid="d1616f67-63e6-475b-92be-956db5f73b8d"/>
+			</line>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="106" y="0" width="164" height="20" forecolor="#000000" uuid="e2f6285b-cac6-4bb1-82d5-45b7d8328816"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[ID_Autor]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="307" y="0" width="338" height="18" uuid="47aa3f0c-2813-4465-af60-154cf6882d54"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{autores_ID_Autor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="106" y="20" width="164" height="20" forecolor="#000000" uuid="52c19201-2c25-4631-8e25-42e18fa2054a"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Apellidos]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="307" y="20" width="338" height="18" uuid="b4fd74b4-02a2-4c48-b0f5-a3b87cdde2c6"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{autores_Apellido}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="106" y="40" width="164" height="20" forecolor="#000000" uuid="c05a2ed6-bfa3-40a6-be3f-2d7ef3689cc7"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Fecha de Nacimiento]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="MM/dd/yyyy" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="307" y="40" width="338" height="18" uuid="16c2d2f3-50d6-4e03-82cf-8a027eb7112b"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{autores_FechaNaci}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="106" y="60" width="164" height="20" forecolor="#000000" uuid="db542bc7-4069-432a-a85b-784c33aef0ef"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nacionalidad]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="307" y="60" width="338" height="18" uuid="28e0dee3-a32a-4484-8c5f-cbecc09882af"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{autores_Nacionalidad}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="4" y="0" width="75" height="90" uuid="b368e35d-ce7d-40cc-a940-793f91f2a425"/>
+				<imageExpression><![CDATA["C:\\Users\\never\\OneDrive\\Escritorio\\autores.png"]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="b9eb0299-bdbb-4c20-a0eb-5997b3d7c12e"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

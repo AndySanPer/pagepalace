@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="librosexitencias" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f2ee6182-2e9f-4f46-a83c-9d9503cedb9e">
+	<property name="template.type" value="columnar"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT
+     libros.`ID_Libro` AS libros_ID_Libro,
+     libros.`Titulo` AS libros_Titulo,
+     libros.`ID_Autor` AS libros_ID_Autor,
+     libros.`Editorial` AS libros_Editorial,
+     libros.`Genero` AS libros_Genero,
+     libros.`AñoPublicacion` AS libros_AñoPublicacion,
+     libros.`NoEjemplareson` AS libros_NoEjemplareson,
+     libros.`Idioma` AS libros_Idioma,
+     autores.`ID_Autor` AS autores_ID_Autor,
+     autores.`Nombre` AS autores_Nombre,
+     autores.`Apellido` AS autores_Apellido,
+     autores.`FechaNaci` AS autores_FechaNaci,
+     autores.`Nacionalidad` AS autores_Nacionalidad
+FROM
+     `autores` autores INNER JOIN `libros` libros ON autores.`ID_Autor` = libros.`ID_Autor`
+
+order by idioma asc]]>
+	</queryString>
+	<field name="libros_ID_Libro" class="java.lang.Integer"/>
+	<field name="libros_Titulo" class="java.lang.String"/>
+	<field name="libros_ID_Autor" class="java.lang.Integer"/>
+	<field name="libros_Editorial" class="java.lang.String"/>
+	<field name="libros_Genero" class="java.lang.String"/>
+	<field name="libros_AñoPublicacion" class="java.lang.Integer"/>
+	<field name="libros_NoEjemplareson" class="java.lang.Integer"/>
+	<field name="libros_Idioma" class="java.lang.String"/>
+	<field name="autores_ID_Autor" class="java.lang.Integer"/>
+	<field name="autores_Nombre" class="java.lang.String"/>
+	<field name="autores_Apellido" class="java.lang.String"/>
+	<field name="autores_FechaNaci" class="java.sql.Date"/>
+	<field name="autores_Nacionalidad" class="java.lang.String"/>
+	<variable name="libros_NoEjemplareson_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{libros_NoEjemplareson}]]></variableExpression>
+	</variable>
+	<variable name="libros_NoEjemplareson_2" class="java.lang.Integer" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{libros_NoEjemplareson}]]></variableExpression>
+	</variable>
+	<variable name="libros_NoEjemplareson_3" class="java.lang.Integer" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{libros_NoEjemplareson}]]></variableExpression>
+	</variable>
+	<group name="libros_Idioma">
+		<groupExpression><![CDATA[$F{libros_Idioma}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<frame>
+					<reportElement mode="Opaque" x="0" y="7" width="555" height="24" forecolor="#B89F7D" backcolor="#785747" uuid="7614025c-eb16-41b0-8dd3-7031044cfdcd"/>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement style="SubTitle" isPrintRepeatedValues="false" x="2" y="1" width="479" height="23" forecolor="#FFFFFF" uuid="22766162-77af-4e71-beb9-be67514b965a"/>
+						<textElement>
+							<font isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{libros_Idioma}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="45"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="120" y="10" width="435" height="93" uuid="6acd9c6c-8b19-4ecb-9dce-01127c363786"/>
+				<textElement>
+					<font size="80" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PagePalace]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="336" y="103" width="217" height="29" uuid="a7debdb9-af23-4135-83ee-bc973e12b336"/>
+				<textElement>
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Libros por Idioma]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="120" height="132" uuid="ff34948b-2468-4457-8504-48128485a2bb"/>
+				<imageExpression><![CDATA["C:\\Users\\never\\OneDrive\\Escritorio\\totallibros.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="170" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="126" y="18" width="132" height="20" forecolor="#000000" uuid="84cdfa4b-e71e-4c94-bcdd-3e78878125e4"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Titulo]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="300" y="18" width="338" height="18" uuid="56f45954-a67f-4c47-aa1a-e367f59f0650"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{libros_Titulo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="126" y="38" width="132" height="20" forecolor="#000000" uuid="84380eb6-6893-4b14-a8f3-5069964b45a0"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[ID_Libro]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="300" y="38" width="338" height="18" uuid="2d7728fb-0ad9-4211-854a-4e67e60a5efe"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{libros_ID_Libro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="126" y="58" width="132" height="20" forecolor="#000000" uuid="4ee74540-d9d1-4c85-85b4-846b08f7a7b8"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Editorial]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="300" y="58" width="338" height="18" uuid="df77654d-d8c9-4d13-aa24-753024bbd58d"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{libros_Editorial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="126" y="78" width="132" height="20" forecolor="#000000" uuid="adbadca4-2c8c-4568-9010-4b271d315bed"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Genero]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="300" y="78" width="338" height="18" uuid="ea5d5b1e-8af5-429b-9245-b0ff6c6e8d26"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{libros_Genero}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="126" y="98" width="132" height="20" forecolor="#000000" uuid="decc9673-7a1a-433f-acc7-2f6fdeaf427f"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Año de Publicación]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="300" y="98" width="338" height="18" uuid="2b192d5d-facb-42ec-9164-9fe03c1e20a5"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{libros_AñoPublicacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="126" y="118" width="145" height="20" forecolor="#B5523E" uuid="5a2cc541-0713-4ad7-a53c-54ee11f4a477"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Numero de Ejemplares]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="300" y="118" width="351" height="18" forecolor="#B5523E" uuid="3b3b4ad6-cf8a-481c-b717-3f740d3f25b4"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{libros_NoEjemplareson}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="126" y="138" width="132" height="20" forecolor="#000000" uuid="ac14b5b2-b847-457e-a5e5-17728cedbc70"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Autor]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="300" y="138" width="338" height="18" uuid="56f485f9-0700-4e76-9e36-fbfb1d4efb55"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{autores_Nombre}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="366" y="136" width="338" height="18" uuid="8aab04dd-7d36-44c1-a20c-d6e28314ea7a"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{autores_Apellido}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="12" width="126" height="158" uuid="73348990-2eec-412d-8dfe-077a90556f05"/>
+				<imageExpression><![CDATA["C:\\Users\\never\\OneDrive\\Escritorio\\totallibros2.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="90" y="158" width="465" height="1" forecolor="#0D726A" uuid="64854564-089d-4e0e-8da0-a1e311ca5310"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="56" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="c45b332f-b566-4dba-8a12-114439b04aa0"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="271" y="16" width="141" height="21" uuid="e807d160-b668-4864-8979-afdcfd1ae636"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[SUBTOTAL DE LIBROS:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="412" y="16" width="100" height="20" uuid="8d6866a4-b2f8-4fc5-a642-4a77b4e0545f"/>
+				<textFieldExpression><![CDATA[$V{libros_NoEjemplareson_3}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="53" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
